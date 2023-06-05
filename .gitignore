@@ -1,0 +1,7 @@
+.venv/
+documents/
+generated_images/
+news_images/
+.env
+db.sqlite3
+__pycache__
