@@ -250,12 +250,20 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     
                 elif '/image' in text:
                     try:
-                        prompt = text.replace('/image','')
-                        file = generate_img(prompt,update.message)
-                        await update.message.reply_photo(file, reply_to_message_id= update.message.message_id)
-                        os.remove(file)
-                        await delete_message(update.message.message_id)
-                        return
+                        if group.images<10 or group.is_subscribed:
+                            prompt = text.replace('/image','')
+                            file = generate_img(prompt,update.message)
+                            group.images+=1
+                            threading.Thread(target= group.save).start()
+                            await update.message.reply_photo(file, reply_to_message_id= update.message.message_id)
+                            os.remove(file)
+                            await delete_message(update.message.message_id)
+                            return
+                        else:
+                            resp = 'subscribe to generate more images. chat up 07064950025'
+                            await update.message.reply_text(resp)
+                            return
+
                     except:
                         resp= 'oops, server is busy. Try again later' 
                         await update.message.reply_text(resp)
