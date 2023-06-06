@@ -200,7 +200,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     '''
             await update.message.reply_text(first_group_msg)
-            print('new group\t  -------created')
+            #print('new group\t  -------created')
             return
             
             
@@ -236,7 +236,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
                 messages = await get_messages(messags)
                 messages.reverse()
-                print(messages)
+                #print(messages)
 
                 last_content = messages[-1]['content'].replace(BOT_USERNAME,"hey Rapid ")
                 messages.pop()
@@ -253,6 +253,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
                         prompt = text.replace('/image','')
                         file = generate_img(prompt,update.message)
                         await update.message.reply_photo(file, reply_to_message_id= update.message.message_id)
+                        os.remove(file)
                         await delete_message(update.message.message_id)
                         return
                     except:
@@ -299,7 +300,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         else:
             return  # We don't want the bot respond if it's not mentioned in the group
     
-        print('Bot:', response)
+        #print('Bot:', response)
         sent = await update.message.reply_text(response)
         await save_message(group, sent)
     else:
@@ -309,7 +310,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             #send first message to client
             first_msg = 'Welcome, I am Rapid! Your A.I powered companion on Whatsapp!\n💬 Ask me about anything, 🍔Recipes, ✈️Travelling, 🏋️‍♀️Fitness,📱Marketing, really.. anything, in any language!\n*Functionalities*\n⭐️Use  /clear 👉 In case Rapid  is not responding in the best way, you can clear the context of a conversation and start over\n🔐/setaccess _access token_ 👉 use this function to subscribe. chat up 07064950025 to get _access token_\n🌃 /image TEXT 👉 Generate an image based on TEXT , the more detail the better\n🌃 /image_var TEXT 👉 send along with an image to generate a variation of the image. sent image must be less than 4MB\n🫴/help  this provides you with helpful informations\n😄/termplates  👉  this provides you with helpful termplates for performing certain tasks like termpaper writing, videoscripts, blog etc and guess what?  ..it can even return your work as microsoft document🤓\n📰/news _topic_ 👉 returns some current news on the _topic_\n🌎/worldnews 👉 to get top 5 world news\n🎤 Audio Messages 👉 You can ask whatever you want using audio messages in any language\n*Note: I can also make mistakes*'
             await update.message.reply_text(first_msg)
-            print('new chat\t  -------created')
+            #print('new chat\t  -------created')
             return None
 
         
@@ -353,7 +354,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             
             messages = await get_messages(messags)
             messages.reverse()
-            print(messages)
+            #print(messages)
 
             if text.startswith('/image'):
                 if private_chat.is_subscribed:
@@ -367,6 +368,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     except:
                         resp= 'oops, server is busy. Try again later' 
                         await update.message.reply_text(resp)
+                        os.remove(file)
                         await delete_message(update.message.message_id)
                         return
                 else: 
@@ -457,8 +459,8 @@ if __name__ == '__main__':
     app.add_handler(MessageHandler(filters.TEXT, handle_message))
 
     # Log all errors
-    #app.add_error_handler(error)
+    app.add_error_handler(error)
 
     print('Polling...')
     # Run the bot
-    app.run_polling(poll_interval=2)
+    app.run_polling(poll_interval=1)
