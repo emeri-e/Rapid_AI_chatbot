@@ -14,6 +14,8 @@ class Private_chat(models.Model):
     access_token = models.UUIDField(primary_key=False,
         default=uuid.uuid4,
         editable=False)
+    name = models.CharField(max_length=200, default= 'test')
+    firstname = models.CharField(max_length=200, default= 'test')
     chat_id = models.CharField(max_length=100)
     is_subscribed = models.BooleanField(default=False)
     in_specialmode = models.BooleanField(default=False)

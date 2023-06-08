@@ -200,6 +200,8 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     '''
             await update.message.reply_text(first_group_msg)
+            group.groupname = update.effective_chat.username
+            threading.Thread(target= group.save).start()
             #print('new group\t  -------created')
             return
             
@@ -318,6 +320,8 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             #send first message to client
             first_msg = 'Welcome, I am Rapid! Your A.I powered companion on Whatsapp!\n💬 Ask me about anything, 🍔Recipes, ✈️Travelling, 🏋️‍♀️Fitness,📱Marketing, really.. anything, in any language!\n*Functionalities*\n⭐️Use  /clear 👉 In case Rapid  is not responding in the best way, you can clear the context of a conversation and start over\n🔐/setaccess _access token_ 👉 use this function to subscribe. chat up 07064950025 to get _access token_\n🌃 /image TEXT 👉 Generate an image based on TEXT , the more detail the better\n🌃 /image_var TEXT 👉 send along with an image to generate a variation of the image. sent image must be less than 4MB\n🫴/help  this provides you with helpful informations\n😄/termplates  👉  this provides you with helpful termplates for performing certain tasks like termpaper writing, videoscripts, blog etc and guess what?  ..it can even return your work as microsoft document🤓\n📰/news _topic_ 👉 returns some current news on the _topic_\n🌎/worldnews 👉 to get top 5 world news\n🎤 Audio Messages 👉 You can ask whatever you want using audio messages in any language\n*Note: I can also make mistakes*'
             await update.message.reply_text(first_msg)
+            private_chat.name, private_chat.firstname = update.effective_chat.username, update.effective_chat.first_name
+            threading.Thread(target= private_chat.save).start()
             #print('new chat\t  -------created')
             return None
 
