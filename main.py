@@ -36,9 +36,9 @@ print('Starting up bot...')
 
 #openai.api_key = os.environ.get('OPEN_API_KEY')
 #TOKEN =os.environ.get('TELE_TOKEN')
-openai.api_key = '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'
-TOKEN = '5658261335:AAEOioHRK0ulq7b9qeEKLbDnHGEtDuUC9l8'
-BOT_USERNAME = '@Rapid_AI_bot'
+openai.api_key = ''
+TOKEN = ''
+BOT_USERNAME = ''
 
 
 # Lets us use the /start command
