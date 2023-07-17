@@ -4,7 +4,7 @@ import requests  # used to download images
 import os  # used to access filepaths
 from PIL import Image  # used to print and edit images
 
-openai.api_key = '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'
+openai.api_key = ''
 
 def generate_img(prompt, message,size = '256x256'):
     image_dir_name = "generated_images"
