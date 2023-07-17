@@ -8,8 +8,8 @@ from whatsapp_api_client_python import API
 import docx
 
 
-ID_INSTANCE = '1101816615'
-API_TOKEN_INSTANCE = 'ba2c3bd2272b4c9ca86eb87dc3f4967f44538c21a8844681b1'
+ID_INSTANCE = ''
+API_TOKEN_INSTANCE = ''
 
 greenAPI = API.GreenApi(ID_INSTANCE, API_TOKEN_INSTANCE)
 
