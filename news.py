@@ -6,7 +6,7 @@ from telegram import Update
 
 
 
-newsapi = NewsApiClient(api_key='d2c3a4bbbb804c29b3c948c66351e833')
+newsapi = NewsApiClient(api_key='')
 
 async def get_headlines(catg,update: Update,country='ng'):
     top_headlines = newsapi.get_top_headlines(q='',
