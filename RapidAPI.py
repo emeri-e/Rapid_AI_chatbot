@@ -2,7 +2,7 @@ import openai
 
 
 
-openai.api_key = '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'
+openai.api_key = ''
 #with open('models.json', 'w') as json_file:
 #  json.dump(openai.Model.list(), json_file)
 
